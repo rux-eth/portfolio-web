@@ -1,7 +1,7 @@
 import { createTheme } from "@material-ui/core/styles";
 
 // THIS OBJECT SHOULD BE SIMILAR TO ../tailwind.config.js
-const themeConstants = {
+export const themeConstants = {
   paper: "#F9F9F9",
   primary: {
     main: "#ffffff",
