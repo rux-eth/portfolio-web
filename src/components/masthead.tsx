@@ -1,7 +1,9 @@
+import CircleIcon from "@mui/icons-material/Circle";
+import { Stack } from "@mui/material";
+import useMatchesMediaQuery from "@src/utils/hooks/useMatchesMediaQuery";
 import { ScrollContext } from "@src/utils/scroll-observer";
 import Image from "next/image";
 import React, { useContext, useRef } from "react";
-
 const Masthead: React.FC = () => {
   const refContainer = useRef<HTMLDivElement>(null);
   const { scrollY } = useContext(ScrollContext);
@@ -16,20 +18,38 @@ const Masthead: React.FC = () => {
       ref={refContainer}
       className="h-screen flex flex-col items-center justify-center bg-black sticky top-0 -z-10"
       style={{
-        transform: `translateY(-${progress * 50}vh)`,
+        transform: `translateY(-${progress * 30}vh)`,
       }}
     >
+      <div className="absolute h-screen w-screen">
+        <Image src={"/btc.png"} width={3840} height={2160} layout="fill" />
+      </div>
       <div
-        className="absolute"
+        className="flex flex-col leading-1 items-center justify-center font-bold h-screen w-screen bg-black bg-cover mix-blend-darken text-center text-white"
         style={{
-          transform: `translateY(${progress * 30}vh)`,
+          transform: `translateY(-${progress * 20}vh)`,
         }}
       >
-        <Image src={"/btc.png"} width={3840} height={2160} />
-      </div>
-      <div className="flex flex-col leading-tight items-center justify-center font-bold h-screen w-screen bg-black bg-cover mix-blend-darken text-center text-white">
-        <div className="text-[21vw]">RUX.ETH</div>
-        <div className="text-[5vw]">Full-Stack Software Engineer</div>
+        {" "}
+        {useMatchesMediaQuery("up", "md") ? (
+          <>
+            <span className="text-[21vw]">RUX.ETH</span>
+            <span className="text-[5vw]">Full-Stack Software Engineer</span>
+          </>
+        ) : (
+          <>
+            <Stack
+              fontSize={"35vw"}
+              direction="column"
+              alignItems={"center"}
+              spacing={-3}
+            >
+              <span>RUX</span>
+              <CircleIcon sx={{ width: "8vw", height: "8vh" }} />
+              <span>ETH</span>
+            </Stack>
+          </>
+        )}
       </div>
     </div>
     /*     <div
