@@ -1,4 +1,3 @@
-import { GridItemStyle } from "@components/grid";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import React from "react";
@@ -30,7 +29,6 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       </Head>{" "}
       <Navbar />
       {children}
-      <GridItemStyle />
     </motion.article>
   );
 };
