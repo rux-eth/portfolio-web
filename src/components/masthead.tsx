@@ -13,7 +13,7 @@ const Masthead: React.FC = () => {
   return (
     <div
       ref={refContainer}
-      className="h-screen w-screen flex flex-col items-center justify-center bg-[url('/crypto.png')] bg-center bg-cover sticky top-16 -z-30"
+      className="h-screen w-screen flex flex-col items-center justify-center bg-[url('/btc.png')] bg-center bg-cover sticky top-16 -z-30"
       style={{
         transform: `translateY(-${progress * 30}vh)`,
       }}
