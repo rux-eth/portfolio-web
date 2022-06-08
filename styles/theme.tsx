@@ -1,5 +1,8 @@
 import { createTheme } from "@material-ui/core/styles";
 
+export type BreakpointVals = {
+  [key in keyof typeof themeConstants.breakpoints]: number;
+};
 // THIS OBJECT SHOULD BE SIMILAR TO ../tailwind.config.js
 const themeConstants = {
   paper: "#F9F9F9",
@@ -39,7 +42,7 @@ const theme = createTheme({
     error: themeConstants.error,
   },
   breakpoints: {
-    values: themeConstants.breakpoints,
+    values: themeConstants.breakpoints as BreakpointVals,
   },
 });
 

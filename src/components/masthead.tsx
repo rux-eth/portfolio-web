@@ -1,4 +1,5 @@
 import { ScrollContext } from "@src/utils/scroll-observer";
+import Image from "next/image";
 import React, { useContext, useRef } from "react";
 
 const Masthead: React.FC = () => {
@@ -13,6 +14,29 @@ const Masthead: React.FC = () => {
   return (
     <div
       ref={refContainer}
+      className="h-screen flex flex-col items-center justify-center bg-black bg-center bg-contain sticky top-16 -z-30"
+      style={{
+        transform: `translateY(-${progress * 50}vh)`,
+      }}
+    >
+      <div
+        className="absolute"
+        style={{
+          transform: `translateY(${progress * 30}vh)`,
+        }}
+      >
+        <Image src={"/btc.png"} width={3840} height={2160} />
+      </div>
+      <div className="flex flex-col font-bold h-screen w-screen bg-black bg-cover mix-blend-darken text-center text-white">
+        <div className="flex flex-col leading-tight h-full w-full items-center justify-center">
+          {" "}
+          <div className="text-[21vw]">RUX.ETH</div>
+          <div className="text-[5vw]">Full-Stack Software Engineer</div>
+        </div>
+      </div>
+    </div>
+    /*     <div
+      ref={refContainer}
       className="h-screen w-screen flex flex-col items-center justify-center bg-[url('/btc.png')] bg-center bg-cover sticky top-16 -z-30"
       style={{
         transform: `translateY(-${progress * 30}vh)`,
@@ -26,15 +50,11 @@ const Masthead: React.FC = () => {
       >
         <div className="flex flex-col leading-tight h-full w-full items-center justify-center">
           {" "}
-          <div className="text-[5rem] sm:text-[6.25rem] md:text-[11rem] lg:text-[15rem] xl:text-[20rem] ">
-            RUX.ETH
-          </div>
-          <div className="text-[1.25rem] sm:text-[1.5rem] md:text-[2.5rem] lg:text-[3.5rem] xl:text-[5rem]">
-            Full-Stack Software Engineer
-          </div>
+          <div className="text-[20vw]">RUX.ETH</div>
+          <div className="text-[3vw]">Full-Stack Software Engineer</div>
         </div>
       </div>
-    </div>
+    </div> */
   );
 };
 export default Masthead;
