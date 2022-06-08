@@ -14,7 +14,7 @@ const Masthead: React.FC = () => {
   return (
     <div
       ref={refContainer}
-      className="h-screen flex flex-col items-center justify-center bg-black bg-center bg-contain sticky top-16 -z-30"
+      className="h-screen flex flex-col items-center justify-center bg-black sticky top-0 -z-10"
       style={{
         transform: `translateY(-${progress * 50}vh)`,
       }}
@@ -27,12 +27,9 @@ const Masthead: React.FC = () => {
       >
         <Image src={"/btc.png"} width={3840} height={2160} />
       </div>
-      <div className="flex flex-col font-bold h-screen w-screen bg-black bg-cover mix-blend-darken text-center text-white">
-        <div className="flex flex-col leading-tight h-full w-full items-center justify-center">
-          {" "}
-          <div className="text-[21vw]">RUX.ETH</div>
-          <div className="text-[5vw]">Full-Stack Software Engineer</div>
-        </div>
+      <div className="flex flex-col leading-tight items-center justify-center font-bold h-screen w-screen bg-black bg-cover mix-blend-darken text-center text-white">
+        <div className="text-[21vw]">RUX.ETH</div>
+        <div className="text-[5vw]">Full-Stack Software Engineer</div>
       </div>
     </div>
     /*     <div

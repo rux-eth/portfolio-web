@@ -24,8 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
     >
       <Head>
         <title>{t}</title>
-        <meta name="twitter:title" content={t} />
-        <meta property="og:title" content={t} />
+        <link rel="stylesheet" href="/fonts/sf-pro.css" />
       </Head>{" "}
       <Navbar />
       {children}
