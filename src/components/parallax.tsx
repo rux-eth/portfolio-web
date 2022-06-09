@@ -29,23 +29,6 @@ let pieces: Pieces = {
 };
 
 const Parallax: FC = () => {
-  const Piece: FC<PieceArgs> = ({ children, imgSrc }) => {
-    return (
-      <>
-        <div style={{ position: "relative" }}>
-          <Image src={imgSrc} layout="fill" />
-          <div
-            className="flex bg-transparent bg-cover text-center text-transparent"
-            style={{
-              transform: `translateY(-${progress * 20}vh)`,
-            }}
-          >
-            {children}
-          </div>
-        </div>
-      </>
-    );
-  };
   const refContainer = useRef<HTMLDivElement>(null);
   const { scrollY } = useContext(ScrollContext);
 
@@ -57,9 +40,9 @@ const Parallax: FC = () => {
   return useMatchesMediaQuery("up", "md") ? (
     <div
       ref={refContainer}
-      className="h-screen flex flex-col items-center justify-center bg-black sticky top-0 -z-10 "
+      className="h-screen flex flex-col items-center justify-center bg-black sticky top-0 -z-10"
       style={{
-        transform: `translateY(-${progress * 30}vh)`,
+        transform: `translateY(${progress * 40}vh)`,
       }}
     >
       {" "}
@@ -76,15 +59,13 @@ const Parallax: FC = () => {
               width={3840}
               height={2160}
               layout="fill"
-              style={{
-                transform: `translateY(${progress * 20}vh)`,
-              }}
+              style={{ transform: `translateY(${progress * 10}vh)` }}
             />
-            <div className="flex bg-black bg-cover  text-center font-bold mix-blend-darken text-white">
+            <div className="flex bg-black bg-cover text-center font-bold mix-blend-darken text-white">
               {key === "dot" ? (
                 <CircleIcon sx={{ width: "6vw", height: "6vh" }} />
               ) : (
-                <Stack fontSize={"21vw"}>
+                <Stack fontSize={"19vw"}>
                   <span className="text-white">{`${key}`}</span>
                 </Stack>
               )}
@@ -92,33 +73,36 @@ const Parallax: FC = () => {
           </div>
         ))}
       </Stack>
-      <span className="text-[5vw] text-white">
-        Full-Stack Software Engineer
-      </span>
     </div>
   ) : (
     <div
       ref={refContainer}
       className="h-screen flex flex-col items-center justify-center bg-black sticky top-0 -z-10"
       style={{
-        transform: `translateY(-${progress * 30}vh)`,
+        transform: `translateY(${progress * 40}vh)`,
       }}
     >
       {" "}
-      <Stack direction={"row"} spacing={1}>
+      <Stack
+        direction={"row"}
+        spacing={0}
+        justifyContent="center"
+        alignItems={"center"}
+      >
         {Object.entries(pieces).map(([key, val]) => (
           <div style={{ position: "relative" }}>
-            <Image src={val} layout="fill" />
-            <div
-              className="flex bg-black bg-cover  text-center font-bold mix-blend-darken text-white"
-              style={{
-                transform: `translateY(-${progress * 20}vh)`,
-              }}
-            >
+            <Image
+              src={"/btc.png"}
+              width={3840}
+              height={2160}
+              layout="fill"
+              style={{ transform: `translateY(${progress * 10}vh)` }}
+            />
+            <div className="flex bg-black bg-cover text-center font-bold mix-blend-darken text-white">
               {key === "dot" ? (
-                <CircleIcon sx={{ width: "8vw", height: "8vh" }} />
+                <CircleIcon sx={{ width: "6vw", height: "6vh" }} />
               ) : (
-                <Stack fontSize={"15vw"}>
+                <Stack fontSize={"19vw"}>
                   <span className="text-white">{`${key}`}</span>
                 </Stack>
               )}

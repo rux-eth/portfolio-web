@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Stack } from "@mui/material";
 import { ScrollContext } from "@src/utils/scroll-observer";
 import React, { useContext, useRef } from "react";
 import { Parallax } from "./parallax";
@@ -12,9 +12,9 @@ const Masthead: React.FC = () => {
     progress = Math.min(1, scrollY / elContainer.clientHeight);
   }
   return (
-    <Box>
+    <Stack>
       <Parallax />
-    </Box>
+    </Stack>
 
     /*     <div
       ref={refContainer}
