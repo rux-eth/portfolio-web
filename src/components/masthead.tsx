@@ -1,9 +1,7 @@
-import CircleIcon from "@mui/icons-material/Circle";
-import { Stack } from "@mui/material";
-import useMatchesMediaQuery from "@src/utils/hooks/useMatchesMediaQuery";
+import { Box } from "@mui/material";
 import { ScrollContext } from "@src/utils/scroll-observer";
-import Image from "next/image";
 import React, { useContext, useRef } from "react";
+import { Parallax } from "./parallax";
 const Masthead: React.FC = () => {
   const refContainer = useRef<HTMLDivElement>(null);
   const { scrollY } = useContext(ScrollContext);
@@ -14,7 +12,11 @@ const Masthead: React.FC = () => {
     progress = Math.min(1, scrollY / elContainer.clientHeight);
   }
   return (
-    <div
+    <Box>
+      <Parallax />
+    </Box>
+
+    /*     <div
       ref={refContainer}
       className="h-screen flex flex-col items-center justify-center bg-black sticky top-0 -z-10"
       style={{
@@ -51,7 +53,7 @@ const Masthead: React.FC = () => {
           </>
         )}
       </div>
-    </div>
+    </div> */
     /*     <div
       ref={refContainer}
       className="h-screen w-screen flex flex-col items-center justify-center bg-[url('/btc.png')] bg-center bg-cover sticky top-16 -z-30"
