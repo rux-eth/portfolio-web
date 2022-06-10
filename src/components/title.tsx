@@ -102,7 +102,7 @@ const Title: FC = () => {
         p,
         p !== "dot" ? (
           <div className="relative bg-white" style={{ overflow: "hidden" }}>
-            <div className="flex flex-col absolute -top-[120%] md:-top-[220%] space-y-1">
+            <div className="absolute -top-[120%] md:-top-[220%] space-y-1">
               {(() => {
                 let allComps: JSX.Element[] = [];
                 let splits: number = Math.floor(items!.length / 3);
@@ -111,8 +111,9 @@ const Title: FC = () => {
                     <Stack direction={"row"} maxWidth={"10vw"}>
                       {items!
                         .slice(i * splits, i * splits + splits)
-                        .map((item) => (
+                        .map((item, index) => (
                           <img
+                            key={`${item.path}_${index}`}
                             src={item.path}
                             style={{
                               left: `${item.startX}%`,
@@ -144,13 +145,14 @@ const Title: FC = () => {
         ) : (
           <div className="relative " style={{ overflow: "hidden" }}>
             <div
-              className="flex flex-col bg-black absolute bottom-0 m-5"
+              className=" bg-black absolute bottom-0 m-5"
               style={{ transform: `translateY(${progress * 110}%)` }}
             >
               <Stack direction={"column"} spacing={3}>
                 {coins.map((c) => (
                   <Stack>
                     <Image
+                      key={c}
                       src={c}
                       width={"500"}
                       height={"500"}
@@ -161,7 +163,7 @@ const Title: FC = () => {
               </Stack>
             </div>
 
-            <div className="bg-white bg-cover text-white mix-blend-darken font-bold">
+            <div className="bg-black bg-cover text-white mix-blend-darken font-bold">
               <CircleIcon className="md:mb-7 text-[12vw] md:text-[7vw]" />
             </div>
           </div>
