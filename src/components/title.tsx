@@ -96,7 +96,7 @@ const Title: FC = () => {
             className="relative bg-white h-[99%] w-[99%]"
             style={{ overflow: "hidden" }}
           >
-            <div className="absolute -top-[120%] md:-top-[220%] space-y-1 -z-5">
+            <div className="absolute -top-[120%] md:-top-[220%] space-y-1 -z-15">
               {(() => {
                 let allComps: JSX.Element[] = [];
                 let splits: number = Math.floor(items!.length / 3);
