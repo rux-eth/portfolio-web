@@ -13,19 +13,21 @@ interface RainItem {
   rot: number;
   startX: number;
 }
-
+interface Pieces {
+  [key: string]: JSX.Element;
+}
 interface RainProps {
   refContain: RefObject<HTMLDivElement>;
 }
 
 const chance = new Chance();
-/* const rainPool: string[] = [
+/* const getSeeds: string[] = [
   "btc-logo",
   "cssIcon",
   "expressJSIcon",
   "GitIcon",
 ].map((icon) => `/icons/${icon}.png`); */
-const rainPool = (): RainItem[] =>
+const getSeeds = () =>
   [
     "cssIcon",
     "expressJSIcon",
@@ -67,12 +69,13 @@ const rainPool = (): RainItem[] =>
     )
     .sort(() => Math.random() - 0.5);
 const pieces = {
-  R: rainPool(),
-  U: rainPool(),
-  X: rainPool(),
-  E: rainPool(),
-  T: rainPool(),
-  H: rainPool(),
+  R: getSeeds(),
+  U: getSeeds(),
+  X: getSeeds(),
+  dot: undefined,
+  E: getSeeds(),
+  T: getSeeds(),
+  H: getSeeds(),
 };
 const coins = [
   "/icons/btc-logo.png",
@@ -81,7 +84,8 @@ const coins = [
   "/icons/btc-logo.png",
   "/icons/btc-logo.png",
 ];
-const TitleCrunched: FC = () => {
+
+const Title: FC = () => {
   const refContainer = useRef<HTMLDivElement>(null);
   const { scrollY } = useContext(ScrollContext);
 
@@ -90,61 +94,54 @@ const TitleCrunched: FC = () => {
   if (elContainer) {
     progress = Math.min(1, scrollY / elContainer.clientHeight);
   }
-  return (
-    <div ref={refContainer} className="bg-black sticky top-0 -z-10">
-      <Parallax
-        /* speed={20} */
-        /* ref={refContainer} */
-        className="h-screen flex flex-col items-center justify-center bg-inherit"
-        /* style={{ transform: `translateY(-${progress * 30}vh)` }} */
-      >
-        <Stack direction={"row"} spacing={3} fontSize={"35vw"}>
-          {Object.entries(pieces)
-            .slice(0, 3)
-            .map(([key, val]) => (
-              <div className="relative bg-white" style={{ overflow: "hidden" }}>
-                <div className="flex flex-col absolute -top-10 space-y-1">
-                  {(() => {
-                    let allComps: JSX.Element[] = [];
-                    let splits: number = Math.floor(val.length / 3);
-                    for (let i = 0; i < splits; i++) {
-                      allComps.push(
-                        <Stack direction={"row"} spacing={0} maxWidth={"10vw"}>
-                          {val
-                            .slice(i * splits, i * splits + splits)
-                            .map((item) => (
-                              <img
-                                src={item.path}
-                                style={{
-                                  left: `${item.startX}%`,
-                                  top: `100%`,
-                                  transform: `scale(${
-                                    item.scale
-                                  }) translateY(${Math.pow(
-                                    progress * 100000,
-                                    48 / 100
-                                  )}%) translateX(${
-                                    item.transX * progress
-                                  }%) rotate(${
-                                    item.rot * progress - item.rot
-                                  }turn) `,
-                                }}
-                              />
-                            ))}
-                        </Stack>
-                      );
-                    }
-                    return allComps;
-                  })()}
-                </div>
+  const buildElem = (): Pieces => {
+    let pieceMap: Map<String, JSX.Element> = new Map();
 
-                <div className="bg-black bg-cover text-white mix-blend-darken font-bold ">
-                  <span>{key}</span>
-                </div>
-              </div>
-            ))}
-        </Stack>
-        <Stack direction={"row"}>
+    Object.entries(pieces).forEach(([p, items]) => {
+      pieceMap.set(
+        p,
+        p !== "dot" ? (
+          <div className="relative bg-white" style={{ overflow: "hidden" }}>
+            <div className="flex flex-col absolute -top-[120%] md:-top-[220%] space-y-1">
+              {(() => {
+                let allComps: JSX.Element[] = [];
+                let splits: number = Math.floor(items!.length / 3);
+                for (let i = 0; i < splits; i++) {
+                  allComps.push(
+                    <Stack direction={"row"} maxWidth={"10vw"}>
+                      {items!
+                        .slice(i * splits, i * splits + splits)
+                        .map((item) => (
+                          <img
+                            src={item.path}
+                            style={{
+                              left: `${item.startX}%`,
+                              top: `100%`,
+                              transform: `scale(${
+                                item.scale
+                              }) translateY(${Math.pow(
+                                progress * 200000,
+                                50 / 100
+                              )}%) translateX(${
+                                item.transX * progress
+                              }%) rotate(${
+                                item.rot * progress - item.rot
+                              }turn) `,
+                            }}
+                          />
+                        ))}
+                    </Stack>
+                  );
+                }
+                return allComps;
+              })()}
+            </div>
+
+            <div className="bg-black bg-cover text-white mix-blend-darken font-bold ">
+              <span>{p}</span>
+            </div>
+          </div>
+        ) : (
           <div className="relative " style={{ overflow: "hidden" }}>
             <div
               className="flex flex-col bg-black absolute bottom-0 m-5"
@@ -164,65 +161,47 @@ const TitleCrunched: FC = () => {
               </Stack>
             </div>
 
-            <div className="bg-black bg-cover text-white mix-blend-darken ">
-              <CircleIcon sx={{ fontSize: "12vw" }} />
+            <div className="bg-black bg-cover text-white mix-blend-darken font-bold">
+              <span>
+                <CircleIcon className="md:mb-7 text-[12vw] md:text-[7vw]" />
+              </span>
             </div>
           </div>
-        </Stack>
-        <Stack direction={"row"} spacing={3} fontSize={"35vw"}>
-          {Object.entries(pieces)
-            .slice(3)
-            .map(([key, val]) => (
-              <div className="relative bg-white" style={{ overflow: "hidden" }}>
-                <div className="flex flex-col absolute -top-10 space-y-1">
-                  {(() => {
-                    let allComps: JSX.Element[] = [];
-                    let splits: number = Math.floor(val.length / 3);
-                    for (let i = 0; i < splits; i++) {
-                      allComps.push(
-                        <Stack direction={"row"} maxWidth={"10vw"}>
-                          {val
-                            .slice(i * splits, i * splits + splits)
-                            .map((item) => (
-                              <img
-                                src={item.path}
-                                style={{
-                                  left: `${item.startX}%`,
-                                  top: `100%`,
-                                  transform: `scale(${
-                                    item.scale
-                                  }) translateY(${Math.pow(
-                                    progress * 100000,
-                                    48 / 100
-                                  )}%) translateX(${
-                                    item.transX * progress
-                                  }%) rotate(${
-                                    item.rot * progress - item.rot
-                                  }turn) `,
-                                }}
-                              />
-                            ))}
-                        </Stack>
-                      );
-                    }
-                    return allComps;
-                  })()}
-                </div>
-
-                <div className="bg-black bg-cover text-white mix-blend-darken font-bold ">
-                  <span>{key}</span>
-                </div>
-              </div>
-            ))}
-        </Stack>
+        )
+      );
+    });
+    return Object.fromEntries(pieceMap) as Pieces;
+  };
+  const allPieces = buildElem();
+  return (
+    <div ref={refContainer} className="bg-black sticky top-0 -z-10">
+      <Parallax
+        speed={25}
+        /* ref={refContainer} */
+        className="h-screen flex flex-col items-center justify-center bg-inherit"
+        /* style={{ transform: `translateY(-${progress * 30}vh)` }} */
+      >
+        {useMatchesMediaQuery("up", "md") ? (
+          <Stack direction={"row"} spacing={2} fontSize={"18vw"}>
+            {Object.values(allPieces).map((elem) => elem)}
+          </Stack>
+        ) : (
+          <>
+            <Stack direction={"row"} spacing={3} fontSize={"35vw"}>
+              {Object.values(allPieces)
+                .slice(0, 3)
+                .map((elem) => elem)}
+            </Stack>
+            <Stack direction={"row"}>{allPieces.dot}</Stack>
+            <Stack direction={"row"} spacing={3} fontSize={"35vw"}>
+              {Object.values(allPieces)
+                .slice(4)
+                .map((elem) => elem)}
+            </Stack>
+          </>
+        )}
       </Parallax>
     </div>
   );
-};
-const TitleFull: FC = () => {
-  return <></>;
-};
-const Title: FC = () => {
-  return useMatchesMediaQuery("up", "md") ? <TitleFull /> : <TitleCrunched />;
 };
 export { Title };
