@@ -161,7 +161,7 @@ const Title: FC = () => {
               </Stack>
             </div>
 
-            <div className="bg-black bg-cover text-white mix-blend-darken font-bold">
+            <div className="bg-white bg-cover text-white mix-blend-darken font-bold">
               <CircleIcon className="md:mb-7 text-[12vw] md:text-[7vw]" />
             </div>
           </div>
