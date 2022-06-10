@@ -190,13 +190,25 @@ const Title: FC = () => {
           </Stack>
         ) : (
           <>
-            <Stack direction={"row"} spacing={3} fontSize={"35vw"}>
+            <Stack
+              direction={"row"}
+              spacing={3}
+              fontSize={"35vw"}
+              style={{ overflow: "hidden" }}
+            >
               {Object.values(allPieces)
                 .slice(0, 3)
                 .map((elem) => elem)}
             </Stack>
-            <Stack direction={"row"}>{allPieces.dot}</Stack>
-            <Stack direction={"row"} spacing={3} fontSize={"35vw"}>
+            <Stack direction={"row"} style={{ overflow: "hidden" }}>
+              {allPieces.dot}
+            </Stack>
+            <Stack
+              direction={"row"}
+              spacing={3}
+              fontSize={"35vw"}
+              style={{ overflow: "hidden" }}
+            >
               {Object.values(allPieces)
                 .slice(4)
                 .map((elem) => elem)}
