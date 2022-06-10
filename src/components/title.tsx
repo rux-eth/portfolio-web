@@ -40,6 +40,15 @@ const getSeeds = () =>
     "nodeJSIcon",
     "pythonIcon",
     "cssIcon",
+    "expressJSIcon",
+    "GitIcon",
+    "htmlIcon",
+    "JavaIcon",
+    "javascriptIcon",
+    "JupyterIcon",
+    "LinuxIcon",
+    "nodeJSIcon",
+    "pythonIcon",
   ]
     .map(
       (icon): RainItem => ({
@@ -93,10 +102,10 @@ const Title: FC = () => {
         p,
         p !== "dot" ? (
           <div
-            className="relative bg-white h-[90%] w-[90%]"
+            className="relative bg-white h-[99%] w-[99%]"
             style={{ overflow: "hidden" }}
           >
-            <div className="absolute -top-[120%] md:-top-[220%] space-y-1 -z-15">
+            <div className="absolute -top-[120%] md:-top-[220%] space-y-1">
               {(() => {
                 let allComps: JSX.Element[] = [];
                 let splits: number = Math.floor(items!.length / 3);
@@ -132,7 +141,7 @@ const Title: FC = () => {
               })()}
             </div>
 
-            <div className="bg-black mix-blend-darken text-white font-bold">
+            <div className="bg-black bg-clip-content text-white mix-blend-darken font-bold">
               <span>{p}</span>
             </div>
           </div>
@@ -185,7 +194,6 @@ const Title: FC = () => {
               direction={"row"}
               spacing={3}
               fontSize={"35vw"}
-              padding={"5rem"}
               style={{ overflow: "hidden" }}
             >
               {Object.values(allPieces)
