@@ -194,6 +194,7 @@ const Title: FC = () => {
               direction={"row"}
               spacing={3}
               fontSize={"35vw"}
+              padding={"5rem"}
               style={{ overflow: "hidden" }}
             >
               {Object.values(allPieces)
