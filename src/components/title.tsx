@@ -102,7 +102,7 @@ const Title: FC = () => {
         p,
         p !== "dot" ? (
           <div
-            className="relative bg-white box-border -border-4"
+            className="relative bg-white h-[99%] w-[99%]"
             style={{ overflow: "hidden" }}
           >
             <div className="absolute -top-[120%] md:-top-[220%] space-y-1">
@@ -141,7 +141,7 @@ const Title: FC = () => {
               })()}
             </div>
 
-            <div className="bg-black bg-clip-content text-white mix-blend-darken font-bold ">
+            <div className="bg-black bg-clip-content text-white mix-blend-darken font-bold">
               <span>{p}</span>
             </div>
           </div>
