@@ -162,9 +162,7 @@ const Title: FC = () => {
             </div>
 
             <div className="bg-black bg-cover text-white mix-blend-darken font-bold">
-              <span>
-                <CircleIcon className="md:mb-7 text-[12vw] md:text-[7vw]" />
-              </span>
+              <CircleIcon className="md:mb-7 text-[12vw] md:text-[7vw]" />
             </div>
           </div>
         )
