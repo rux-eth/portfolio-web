@@ -14,7 +14,7 @@ const Navbar: FC = () => {
   return (
     <AppBar
       elevation={0}
-      position="sticky"
+      position="fixed"
       sx={{
         backdropFilter: "blur(16px) saturate(180%)",
         WebkitBackdropFilter: "blur(16px) saturate(180%)",

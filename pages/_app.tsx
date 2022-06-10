@@ -2,8 +2,8 @@ import ScrollObserver from "@src/utils/scroll-observer";
 import { wrapper } from "@utils/store";
 import { AppProps } from "next/app";
 import React from "react";
+import { ParallaxProvider } from "react-scroll-parallax";
 import "../styles/global.css";
-
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -14,10 +14,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <ScrollObserver>
-      {/* @ts-ignore */}
-      <Component {...pageProps} />
-    </ScrollObserver>
+    <ParallaxProvider>
+      <ScrollObserver>
+        {/* @ts-ignore */}
+        <Component {...pageProps} />
+      </ScrollObserver>
+    </ParallaxProvider>
   );
 }
 

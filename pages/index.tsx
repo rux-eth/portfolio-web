@@ -3,7 +3,6 @@ import Masthead from "@src/components/masthead";
 import TLDR from "@src/components/tldr";
 import Wrapper from "@utils/hoc/wrapper";
 import type { NextPage } from "next";
-
 const Home: NextPage = () => {
   return (
     <>
