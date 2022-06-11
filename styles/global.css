@@ -8,8 +8,7 @@ body {
     sans-serif;
   line-height: 1.1;
   letter-spacing: 0em;
-}
-div {
-  box-sizing: border-box;
-  padding: -10px;
+  min-height: 100vh;
+  min-height: fill-available;
+  min-height: -webkit-fill-available;
 }

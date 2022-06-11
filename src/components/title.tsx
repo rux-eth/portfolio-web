@@ -5,7 +5,7 @@ import { ScrollContext } from "@src/utils/scroll-observer";
 import Chance from "chance";
 import Image from "next/image";
 import { FC, RefObject, useContext, useRef } from "react";
-import { Parallax } from "react-scroll-parallax";
+import Rain from "./rain";
 interface RainItem {
   path: string;
   scale: number;
@@ -102,51 +102,24 @@ const Title: FC = () => {
         p,
         p !== "dot" ? (
           <div
-            className="relative bg-white"
-            style={{
+            className="relative min-w-[25vw]"
+            /* style={{
               overflow: "hidden",
-            }}
+            }} */
           >
-            <div className="absolute -top-[120%] md:-top-[220%] space-y-1 ">
-              {(() => {
-                let allComps: JSX.Element[] = [];
-                let splits: number = Math.floor(items!.length / 3);
-                for (let i = 0; i < splits; i++) {
-                  allComps.push(
-                    <Parallax
-                      speed={-3}
-                      className="flex flex-row"
-                      style={{ maxWidth: "10vw" }}
-                    >
-                      {items!
-                        .slice(i * splits, i * splits + splits)
-                        .map((item, index) => (
-                          <img
-                            key={`${item.path}_${index}`}
-                            src={item.path}
-                            style={{
-                              transform: `scale(${
-                                item.scale
-                              }) translateY(${Math.pow(
-                                progress * 200000,
-                                50 / 100
-                              )}%) translateX(${
-                                item.transX * progress
-                              }%) rotate(${
-                                item.rot * progress - item.rot
-                              }turn) `,
-                            }}
-                          />
-                        ))}
-                    </Parallax>
-                  );
-                }
-                return allComps;
-              })()}
-            </div>
+            <Rain refContain={refContainer} variant={5} />
 
-            <div className="bg-black text-white mix-blend-darken font-bold">
-              <span>{p}</span>
+            <div
+              style={{
+                backgroundColor: "black",
+                color: "white",
+                font: "SF Pro Display",
+                fontWeight: "bold",
+                textAlign: "center",
+                mixBlendMode: "darken",
+              }}
+            >
+              {p}
             </div>
           </div>
         ) : (
@@ -183,42 +156,45 @@ const Title: FC = () => {
   return (
     <div
       ref={refContainer}
-      className="h-screen w-screen flex flex-col items-center justify-center bg-black sticky space-y-1 top-0 -z-10"
+      className="h-screen flex flex-col items-center justify-center text-center bg-black sticky top-0 -z-10"
       style={{ transform: `translateY(-${progress * 30}vh)` }}
     >
-      {useMatchesMediaQuery("up", "md") ? (
-        <Stack direction={"row"} spacing={2} fontSize={"18vw"}>
-          {Object.values(allPieces).map((elem) => elem)}
-        </Stack>
-      ) : (
-        <>
-          <Stack
-            bgcolor={"black"}
-            spacing={2}
-            direction={"row"}
-            fontSize={"35vw"}
-            style={{ overflow: "hidden" }}
-          >
-            {Object.values(allPieces)
-              .slice(0, 3)
-              .map((elem) => elem)}
-          </Stack>
-          <Stack direction={"row"} style={{ overflow: "hidden" }}>
-            {allPieces.dot}
-          </Stack>
-          <Stack
-            bgcolor={"black"}
-            spacing={2}
-            direction={"row"}
-            fontSize={"35vw"}
-            style={{ overflow: "hidden" }}
-          >
-            {Object.values(allPieces)
-              .slice(4)
-              .map((elem) => elem)}
-          </Stack>
-        </>
-      )}
+      <div className="relative w-[80vw] h-[50vh] m-auto">
+        <div
+          className="absolute top-[50%] left-[50%]"
+          style={{ transform: "translate(-50%,-50%)" }}
+        >
+          {useMatchesMediaQuery("up", "md") ? (
+            <Stack direction={"row"} spacing={4} fontSize={"18vw"}>
+              {Object.values(allPieces).map((elem) => elem)}
+            </Stack>
+          ) : (
+            <>
+              <Stack
+                bgcolor={"black"}
+                spacing={1}
+                direction={"row"}
+                fontSize={"30vw"}
+              >
+                {Object.values(allPieces)
+                  .slice(0, 3)
+                  .map((elem) => elem)}
+              </Stack>
+              {/* <Stack direction={"row"}>{allPieces.dot}</Stack> */}
+              <Stack
+                bgcolor={"black"}
+                spacing={1}
+                direction={"row"}
+                fontSize={"30vw"}
+              >
+                {Object.values(allPieces)
+                  .slice(4)
+                  .map((elem) => elem)}
+              </Stack>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
