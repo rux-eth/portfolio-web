@@ -25,7 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       <Head>
         <title>{t}</title>
         <link rel="stylesheet" href="/fonts/sf-pro.css" />
-      </Head>{" "}
+      </Head>
       <Navbar />
       {children}
     </motion.article>

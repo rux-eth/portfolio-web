@@ -9,3 +9,7 @@ body {
   line-height: 1.1;
   letter-spacing: 0em;
 }
+div {
+  box-sizing: border-box;
+  padding: -10px;
+}

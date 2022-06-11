@@ -19,7 +19,7 @@ const Navbar: FC = () => {
         backdropFilter: "blur(16px) saturate(180%)",
         WebkitBackdropFilter: "blur(16px) saturate(180%)",
         backgroundColor: "rgba(18, 18, 18, 0.75)",
-        border: "1px solid rgba(255, 255, 255, 0.015)",
+        border: "2px solid rgba(255, 255, 255, 0.015)",
         zIndex: 1201,
       }}
     >

@@ -102,16 +102,22 @@ const Title: FC = () => {
         p,
         p !== "dot" ? (
           <div
-            className="relative bg-white h-[99%] w-[99%]"
-            style={{ overflow: "hidden" }}
+            className="relative bg-white"
+            style={{
+              overflow: "hidden",
+            }}
           >
-            <div className="absolute -top-[120%] md:-top-[220%] space-y-1">
+            <div className="absolute -top-[120%] md:-top-[220%] space-y-1 ">
               {(() => {
                 let allComps: JSX.Element[] = [];
                 let splits: number = Math.floor(items!.length / 3);
                 for (let i = 0; i < splits; i++) {
                   allComps.push(
-                    <Stack direction={"row"} maxWidth={"10vw"}>
+                    <Parallax
+                      speed={-3}
+                      className="flex flex-row"
+                      style={{ maxWidth: "10vw" }}
+                    >
                       {items!
                         .slice(i * splits, i * splits + splits)
                         .map((item, index) => (
@@ -119,8 +125,6 @@ const Title: FC = () => {
                             key={`${item.path}_${index}`}
                             src={item.path}
                             style={{
-                              left: `${item.startX}%`,
-                              top: `100%`,
                               transform: `scale(${
                                 item.scale
                               }) translateY(${Math.pow(
@@ -134,21 +138,21 @@ const Title: FC = () => {
                             }}
                           />
                         ))}
-                    </Stack>
+                    </Parallax>
                   );
                 }
                 return allComps;
               })()}
             </div>
 
-            <div className="bg-black bg-clip-content text-white mix-blend-darken font-bold">
+            <div className="bg-black text-white mix-blend-darken font-bold">
               <span>{p}</span>
             </div>
           </div>
         ) : (
           <div className="relative " style={{ overflow: "hidden" }}>
             <div
-              className=" bg-black absolute bottom-0 m-5"
+              className=" bg-black absolute bottom-0 m-2"
               style={{ transform: `translateY(${progress * 110}%)` }}
             >
               <Stack direction={"column"} spacing={3}>
@@ -177,45 +181,44 @@ const Title: FC = () => {
   };
   const allPieces = buildElem();
   return (
-    <div ref={refContainer} className="bg-black sticky top-0 -z-10">
-      <Parallax
-        speed={25}
-        /* ref={refContainer} */
-        className="h-screen flex flex-col items-center justify-center bg-inherit"
-        /* style={{ transform: `translateY(-${progress * 30}vh)` }} */
-      >
-        {useMatchesMediaQuery("up", "md") ? (
-          <Stack direction={"row"} spacing={2} fontSize={"18vw"}>
-            {Object.values(allPieces).map((elem) => elem)}
+    <div
+      ref={refContainer}
+      className="h-screen w-screen flex flex-col items-center justify-center bg-black sticky space-y-1 top-0 -z-10"
+      style={{ transform: `translateY(-${progress * 30}vh)` }}
+    >
+      {useMatchesMediaQuery("up", "md") ? (
+        <Stack direction={"row"} spacing={2} fontSize={"18vw"}>
+          {Object.values(allPieces).map((elem) => elem)}
+        </Stack>
+      ) : (
+        <>
+          <Stack
+            bgcolor={"black"}
+            spacing={2}
+            direction={"row"}
+            fontSize={"35vw"}
+            style={{ overflow: "hidden" }}
+          >
+            {Object.values(allPieces)
+              .slice(0, 3)
+              .map((elem) => elem)}
           </Stack>
-        ) : (
-          <>
-            <Stack
-              direction={"row"}
-              spacing={3}
-              fontSize={"35vw"}
-              style={{ overflow: "hidden" }}
-            >
-              {Object.values(allPieces)
-                .slice(0, 3)
-                .map((elem) => elem)}
-            </Stack>
-            <Stack direction={"row"} style={{ overflow: "hidden" }}>
-              {allPieces.dot}
-            </Stack>
-            <Stack
-              direction={"row"}
-              spacing={3}
-              fontSize={"35vw"}
-              style={{ overflow: "hidden" }}
-            >
-              {Object.values(allPieces)
-                .slice(4)
-                .map((elem) => elem)}
-            </Stack>
-          </>
-        )}
-      </Parallax>
+          <Stack direction={"row"} style={{ overflow: "hidden" }}>
+            {allPieces.dot}
+          </Stack>
+          <Stack
+            bgcolor={"black"}
+            spacing={2}
+            direction={"row"}
+            fontSize={"35vw"}
+            style={{ overflow: "hidden" }}
+          >
+            {Object.values(allPieces)
+              .slice(4)
+              .map((elem) => elem)}
+          </Stack>
+        </>
+      )}
     </div>
   );
 };
