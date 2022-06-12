@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import React from "react";
 import { MainHeader } from "./headers";
 /* const Name: React.FC = () => {
@@ -8,9 +9,9 @@ const Bio: React.FC = () => {};
  */
 const TLDR: React.FC = () => {
   return (
-    <div className="text-left min-h-screen">
-      <MainHeader>Rux.eth</MainHeader>
-    </div>
+    <Container className="min-h-screen">
+      <MainHeader>Under Construction...</MainHeader>
+    </Container>
   );
 };
 export default TLDR;

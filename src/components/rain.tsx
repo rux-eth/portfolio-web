@@ -12,7 +12,7 @@ interface RainItem {
 
 interface RainProps {
   refContain: RefObject<HTMLDivElement>;
-  variant: number;
+  variant?: number;
 }
 
 interface Config {
@@ -71,6 +71,7 @@ const getSeeds = (): RainItem[] => {
     "nodeJSIcon",
     "pythonIcon",
   ];
+
   const temp: number = Math.floor(config.numItems / pool.length);
   for (let i = 0; i < temp; i++) {
     addItems(pool);
@@ -82,13 +83,15 @@ const getSeeds = (): RainItem[] => {
 
     addItems(r);
   }
-
-  return allItems.sort(() => Math.random() - 0.5);
+  allItems = allItems.sort(() => Math.random() - 0.5);
+  return allItems;
 };
-const variants: RainItem[][] = Array(config.numVars).fill(getSeeds());
+const variants: RainItem[][] = Array.from(Array(config.numVars), () =>
+  getSeeds()
+);
 const Rain: FC<RainProps> = ({ refContain, variant }) => {
   const { scrollY } = useContext(ScrollContext);
-
+  const v: number = variant ?? chance.integer({ min: 0 });
   let progress = 0;
   const { current: elContainer } = refContain;
   if (elContainer) {
@@ -97,7 +100,7 @@ const Rain: FC<RainProps> = ({ refContain, variant }) => {
 
   return (
     <div
-      className="absolute bg-white h-[97%] w-[97%] top-0 space-y-1 p-px left-[50%] top-[50%]"
+      className="absolute bg-white h-[97%] w-[97%] top-0 p-px left-[50%] top-[50%]"
       style={{
         boxSizing: "border-box",
         overflow: "hidden",
@@ -105,7 +108,7 @@ const Rain: FC<RainProps> = ({ refContain, variant }) => {
       }}
     >
       {(() => {
-        const items: RainItem[] = variants[variants.length % variant];
+        const items: RainItem[] = variants[v % variants.length];
         let allComps: JSX.Element[] = [];
         let splits: number = Math.floor(items!.length / config.vertSpread);
         for (let i = 0; i <= splits; i++) {
@@ -116,7 +119,7 @@ const Rain: FC<RainProps> = ({ refContain, variant }) => {
               style={{
                 position: "absolute",
                 maxWidth: `${100 / splits}%`,
-                top: `${i * 20 - 100}px`,
+                top: `${i * 20 - 110}px`,
                 transform: `translateY(${progress * 10}vh)`,
               }}
             >
@@ -142,4 +145,48 @@ const Rain: FC<RainProps> = ({ refContain, variant }) => {
     </div>
   );
 };
+const Slot: FC<RainProps> = ({ refContain }) => {
+  const coins = [
+    "/icons/btc-logo.png",
+    "/icons/eth-logo.png",
+    "/icons/sol-logo.png",
+    "/icons/avax-logo.png",
+  ];
+  const { scrollY } = useContext(ScrollContext);
+
+  let progress = 0;
+  const { current: elContainer } = refContain;
+  if (elContainer) {
+    progress = Math.min(1, scrollY / elContainer.clientHeight);
+  }
+  return (
+    <div
+      className="absolute bg-black h-[97%] w-[97%] top-0 p-px left-[50%] top-[50%]"
+      style={{
+        boxSizing: "border-box",
+        overflow: "hidden",
+        transform: "translateX(-50%) translateY(-50%)",
+      }}
+    >
+      <div
+        className="flex flex-col-reverse bottom-0 bg-black"
+        style={{
+          position: "absolute",
+          transform: `translateY(${progress * 120}%)`,
+        }}
+      >
+        {coins.map((c, index) => (
+          <div className="m-auto">
+            <img
+              key={`slot_${c}_${index}`}
+              src={c}
+              style={{ transform: "scale(0.7)" }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 export default Rain;
+export { Slot };

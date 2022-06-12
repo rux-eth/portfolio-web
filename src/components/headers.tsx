@@ -4,7 +4,6 @@ import { theme } from "@styles/theme";
 const MainHeader: React.FC = ({ children }) => {
   return (
     <Typography
-      variant="h3"
       fontFamily="SF Pro"
       sx={{
         mb: "1.5rem",

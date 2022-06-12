@@ -10,14 +10,6 @@ const Home: NextPage = () => {
       <div className="bg-primary-dark">
         <Container>
           <TLDR />
-          <TLDR />
-          <TLDR />
-          <TLDR />
-          <TLDR />
-          <TLDR />
-          <TLDR />
-          <TLDR />
-          <TLDR />
         </Container>
       </div>
     </>
