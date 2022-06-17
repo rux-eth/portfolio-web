@@ -3,10 +3,10 @@ const themeConstants = {
   paper: "#F9F9F9",
   primary: {
     main: "#ffffff",
-    dark: "#2f2f2f",
+    dark: "#000000",
   },
   secondary: {
-    main: "#2f2f2f",
+    main: "#000000",
     dark: "#ffffff",
   },
   error: {
@@ -27,7 +27,7 @@ const themeConstants = {
 module.exports = {
   mode: "jit",
   purge: ["./pages/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
       colors: {

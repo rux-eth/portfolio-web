@@ -23,7 +23,7 @@ interface Config {
 }
 
 const config: Config = {
-  numItems: 30,
+  numItems: 25,
   numVars: 10,
   // modifies how many items per row. lower number = more items per row
   vertSpread: 7,
@@ -43,11 +43,11 @@ const getSeeds = (): RainItem[] => {
       allItems.push({
         path: `/icons/${icon}.png`,
         scale: chance.floating({
-          min: 0.7,
-          max: 1.3,
+          min: 0.6,
+          max: 1.8,
           fixed: 2,
         }),
-        transX: chance.integer({ min: -20, max: 20 }),
+        transX: chance.integer({ min: -100, max: 100 }),
         rot: chance.floating({
           min: -0.5,
           max: 0.5,
@@ -66,7 +66,6 @@ const getSeeds = (): RainItem[] => {
     "htmlIcon",
     "JavaIcon",
     "javascriptIcon",
-    "JupyterIcon",
     "LinuxIcon",
     "nodeJSIcon",
     "pythonIcon",
@@ -83,7 +82,7 @@ const getSeeds = (): RainItem[] => {
 
     addItems(r);
   }
-  allItems = allItems.sort(() => Math.random() - 0.5);
+  allItems = allItems.sort((a, b) => a.scale - b.scale);
   return allItems;
 };
 const variants: RainItem[][] = Array.from(Array(config.numVars), () =>
@@ -119,21 +118,26 @@ const Rain: FC<RainProps> = ({ refContain, variant }) => {
               style={{
                 position: "absolute",
                 maxWidth: `${100 / splits}%`,
-                top: `${i * 20 - 110}px`,
+                top: `${i * 6 - 40}px`,
                 transform: `translateY(${progress * 10}vh)`,
               }}
             >
               {s.map((item, index) => (
                 <img
+                  className="bg-white border-1 border-black"
+                  //className="bg-black border-2 border-white dark:border-black dark:bg-white"
                   key={`${item.path}_${index}`}
                   src={item.path}
                   style={{
+                    zIndex: index,
+                    borderRadius: "50%",
                     transform: `scale(${item.scale}) translateY(${Math.pow(
                       progress * 200000,
                       50 / 100
-                    )}%) translateX(${item.transX * progress}%) rotate(${
+                    )}%) translateX(${item.transX * (progress + 1)}%) rotate(${
                       item.rot * progress - item.rot
                     }turn) `,
+                    border: "3px solid ",
                   }}
                 />
               ))}
@@ -151,6 +155,7 @@ const Slot: FC<RainProps> = ({ refContain }) => {
     "/icons/eth-logo.png",
     "/icons/sol-logo.png",
     "/icons/avax-logo.png",
+    "/icons/wojak.png",
   ];
   const { scrollY } = useContext(ScrollContext);
 
@@ -161,7 +166,7 @@ const Slot: FC<RainProps> = ({ refContain }) => {
   }
   return (
     <div
-      className="absolute bg-black h-[97%] w-[97%] top-0 p-px left-[50%] top-[50%]"
+      className="absolute bg-black h-full w-full top-0 p-px left-[50%] top-[50%]"
       style={{
         boxSizing: "border-box",
         overflow: "hidden",
@@ -172,17 +177,15 @@ const Slot: FC<RainProps> = ({ refContain }) => {
         className="flex flex-col-reverse bottom-0 bg-black"
         style={{
           position: "absolute",
-          transform: `translateY(${progress * 120}%)`,
+          transform: `translateY(${progress * 105}%)`,
         }}
       >
         {coins.map((c, index) => (
-          <div className="m-auto">
-            <img
-              key={`slot_${c}_${index}`}
-              src={c}
-              style={{ transform: "scale(0.7)" }}
-            />
-          </div>
+          <img
+            key={`slot_${c}_${index}`}
+            src={c}
+            style={{ transform: "scale(0.7)", borderRadius: "50%" }}
+          />
         ))}
       </div>
     </div>

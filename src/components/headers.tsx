@@ -1,18 +1,9 @@
-import { Typography } from "@mui/material";
-import { theme } from "@styles/theme";
+import { FC } from "react";
 
-const MainHeader: React.FC = ({ children }) => {
-  return (
-    <Typography
-      fontFamily="SF Pro"
-      sx={{
-        mb: "1.5rem",
-        mt: "1.5rem",
-      }}
-      color={theme.palette.secondary.dark}
-    >
-      {children}
-    </Typography>
-  );
+const MainHeader: FC = ({ children }) => {
+  return <div className="text-4xl text-white font-bold">{children}</div>;
 };
-export { MainHeader };
+const SubHeader: FC = ({ children }) => {
+  return <div className="text-2xl text-white font-bold">{children}</div>;
+};
+export { MainHeader, SubHeader };

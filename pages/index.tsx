@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Masthead />
-      <div className="bg-primary-dark">
+      <div className="bg-primary-dark h-screen">
         <Container>
           <TLDR />
         </Container>

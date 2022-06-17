@@ -6,7 +6,7 @@ import { Spin as Hamburger } from "hamburger-react";
 // import { navDrawerAtom } from '@src/store/jotai';
 import { atom, useAtom } from "jotai";
 import { FC } from "react";
-import { FaGithub, FaMedium, FaTwitter } from "react-icons/fa";
+import Links from "./links";
 
 const Navbar: FC = () => {
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useAtom(atom(false));
@@ -34,7 +34,7 @@ const Navbar: FC = () => {
           <Link
             href="/"
             style={{
-              color: theme.palette.secondary.dark,
+              color: theme.palette.primary.main,
               textDecoration: "none",
               transition,
               transitionDuration: "500ms",
@@ -62,91 +62,7 @@ const Navbar: FC = () => {
               },
             }}
           >
-            <Link
-              href="/#faq"
-              sx={{
-                color: theme.palette.secondary.dark,
-                textDecoration: "none",
-                transition,
-                transitionDuration: "500ms",
-                ":hover": {
-                  color: theme.palette.primary.dark,
-                  cursor: "pointer",
-                  transform: "translateY(-2px)",
-                },
-              }}
-            >
-              <Typography fontFamily="SF Pro" fontSize="1.22rem">
-                Articles
-              </Typography>
-            </Link>
-            {/*             <Link
-              href="/#mint"
-              sx={{
-                color: theme.palette.secondary.dark,
-                textDecoration: "none",
-                transition,
-                transitionDuration: "500ms",
-                ":hover": {
-                  color: theme.palette.primary.dark,
-                  cursor: "pointer",
-                  transform: "translateY(-2px)",
-                },
-              }}
-            >
-              <Typography fontFamily="SF Pro" fontSize="1.22rem">
-                Github
-              </Typography>
-            </Link> */}
-
-            <Link
-              href="https://twitter.com/Rux_eth"
-              target="_blank"
-              sx={{
-                color: theme.palette.secondary.dark,
-                transition,
-                transitionDuration: "500ms",
-                ":hover": {
-                  color: theme.palette.primary.dark,
-                  cursor: "pointer",
-                  transform: "translateY(-2px)",
-                },
-              }}
-            >
-              <FaTwitter style={{ height: "28px", width: "28px" }} />
-            </Link>
-            <Link
-              href="https://medium.com/@rux.eth"
-              target="_blank"
-              sx={{
-                color: theme.palette.secondary.dark,
-                transition,
-                transitionDuration: "500ms",
-                ":hover": {
-                  color: theme.palette.primary.dark,
-                  cursor: "pointer",
-                  transform: "translateY(-2px)",
-                },
-              }}
-            >
-              <FaMedium style={{ height: "28px", width: "28px" }} />
-            </Link>
-            <Link
-              href="https://github.com/rux-eth"
-              target="_blank"
-              sx={{
-                color: theme.palette.secondary.dark,
-                transition,
-                transitionDuration: "500ms",
-                ":hover": {
-                  color: theme.palette.primary.dark,
-                  cursor: "pointer",
-                  transform: "translateY(-2px)",
-                },
-              }}
-            >
-              <FaGithub style={{ height: "28px", width: "28px" }} />
-            </Link>
+            {Links.internal}
           </Stack>
           <Stack
             direction="row"

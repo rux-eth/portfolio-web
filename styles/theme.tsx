@@ -8,10 +8,10 @@ const themeConstants = {
   paper: "#F9F9F9",
   primary: {
     main: "#ffffff",
-    dark: "#2f2f2f",
+    dark: "#000000",
   },
   secondary: {
-    main: "#2f2f2f",
+    main: "#000000",
     dark: "#ffffff",
   },
   error: {

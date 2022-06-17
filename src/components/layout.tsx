@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Head from "next/head";
 import React from "react";
+import Footer from "./footer";
 import Navbar from "./navbar";
 
 const variants = {
@@ -28,6 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       </Head>
       <Navbar />
       {children}
+      <Footer />
     </motion.article>
   );
 };
