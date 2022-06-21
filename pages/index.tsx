@@ -1,18 +1,12 @@
-import { Container } from "@mui/material";
-import Masthead from "@src/components/masthead";
+import Layout from "@src/components/layout";
 import TLDR from "@src/components/tldr";
 import Wrapper from "@utils/hoc/wrapper";
 import type { NextPage } from "next";
 const Home: NextPage = () => {
   return (
-    <>
-      <Masthead />
-      <div className="bg-primary-dark h-screen">
-        <Container>
-          <TLDR />
-        </Container>
-      </div>
-    </>
+    <Layout>
+      <TLDR />
+    </Layout>
   );
 };
 /* hi */

@@ -1,5 +1,4 @@
 //Our MUI Theme object - inject theme to the whole project
-import Layout from "@components/layout";
 import { ThemeProvider } from "@material-ui/core";
 import { theme } from "@styles/theme";
 import React, { useEffect } from "react";
@@ -26,9 +25,7 @@ const Wrapper = (Component) => {
 
     return (
       <ThemeProvider theme={theme}>
-        <Layout>
-          <Component {...props} />
-        </Layout>
+        <Component {...props} />
       </ThemeProvider>
     );
   };

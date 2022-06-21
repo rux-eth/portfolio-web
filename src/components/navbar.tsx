@@ -1,5 +1,5 @@
 import Link from "@components/link";
-import { AppBar, Container, Stack, Toolbar, Typography } from "@mui/material";
+import { AppBar, Stack, Toolbar, Typography } from "@mui/material";
 import { theme } from "@styles/theme";
 import transition from "@styles/utils";
 import { Spin as Hamburger } from "hamburger-react";
@@ -23,62 +23,56 @@ const Navbar: FC = () => {
         zIndex: 1201,
       }}
     >
-      <Container>
-        <Toolbar
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Link
+          href="/"
+          style={{
+            color: theme.palette.primary.main,
+            textDecoration: "none",
+            transition,
+            transitionDuration: "500ms",
+          }}
+          ml="0.4rem"
+        >
+          <Typography fontFamily="SF Pro" fontSize="1.7rem" fontStyle={"bold"}>
+            Rux.eth
+          </Typography>
+        </Link>
+
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="flex-end"
+          fontFamily="SF Pro"
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            display: "none",
+            [theme.breakpoints.up("md")]: {
+              display: "flex",
+            },
           }}
         >
-          <Link
-            href="/"
-            style={{
-              color: theme.palette.primary.main,
-              textDecoration: "none",
-              transition,
-              transitionDuration: "500ms",
-            }}
-            ml="0.4rem"
-          >
-            <Typography
-              fontFamily="SF Pro"
-              fontSize="1.7rem"
-              fontStyle={"bold"}
-            >
-              Rux.eth
-            </Typography>
-          </Link>
-
-          <Stack
-            direction="row"
-            spacing={2}
-            alignItems="flex-end"
-            fontFamily="SF Pro"
-            sx={{
-              display: "none",
-              [theme.breakpoints.up("md")]: {
-                display: "flex",
-              },
-            }}
-          >
-            {Links.internal}
-          </Stack>
-          <Stack
-            direction="row"
-            spacing={1.2}
-            alignItems="center"
-            sx={{ [theme.breakpoints.up("md")]: { display: "none" } }}
-          >
-            <Hamburger
-              toggled={isNavDrawerOpen}
-              toggle={setIsNavDrawerOpen}
-              color={theme.palette.primary.main}
-              hideOutline
-            />
-          </Stack>
-        </Toolbar>
-      </Container>
+          {Links.internal}
+        </Stack>
+        <Stack
+          direction="row"
+          spacing={1.2}
+          alignItems="center"
+          sx={{ [theme.breakpoints.up("md")]: { display: "none" } }}
+        >
+          <Hamburger
+            toggled={isNavDrawerOpen}
+            toggle={setIsNavDrawerOpen}
+            color={theme.palette.primary.main}
+            hideOutline
+          />
+        </Stack>
+      </Toolbar>
     </AppBar>
   );
 };

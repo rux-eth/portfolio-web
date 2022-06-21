@@ -64,7 +64,7 @@ const Masthead: React.FC = () => {
   return (
     <div
       ref={refContainer}
-      className="h-screen flex items-center justify-center text-center bg-black sticky top-0 -z-10"
+      className=" h-screen flex items-center justify-center text-center bg-black sticky top-0 -z-10"
       style={{ transform: `translateY(-${progress * 30}vh)` }}
     >
       {useMatchesMediaQuery("up", "sm") ? (

@@ -1,11 +1,13 @@
+import ResizeObserver from "@src/utils/resize-observer";
 import ScrollObserver from "@src/utils/scroll-observer";
 import { wrapper } from "@utils/store";
 import { AppProps } from "next/app";
-import React from "react";
+import React, { useEffect } from "react";
 import { ParallaxProvider } from "react-scroll-parallax";
 import "../styles/global.css";
+
 function MyApp({ Component, pageProps }: AppProps) {
-  React.useEffect(() => {
+  useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
@@ -16,8 +18,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ParallaxProvider>
       <ScrollObserver>
-        {/* @ts-ignore */}
-        <Component {...pageProps} />
+        <ResizeObserver>
+          {/* @ts-ignore */}
+          <Component {...pageProps} />
+        </ResizeObserver>
       </ScrollObserver>
     </ParallaxProvider>
   );

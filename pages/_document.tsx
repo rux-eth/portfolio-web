@@ -6,7 +6,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <link rel="stylesheet" href="/fonts/sf-pro.css" />
+          <link rel="stylesheet" href="/fonts/menlo.css" />
+        </Head>
         <body>
           <Main />
           <NextScript />

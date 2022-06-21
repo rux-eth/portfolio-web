@@ -1,7 +1,10 @@
+import { Box, Container } from "@mui/material";
+import { theme } from "@styles/theme";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import React from "react";
 import Footer from "./footer";
+import Masthead from "./masthead";
 import Navbar from "./navbar";
 
 const variants = {
@@ -26,9 +29,15 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       <Head>
         <title>{t}</title>
         <link rel="stylesheet" href="/fonts/sf-pro.css" />
+        <link rel="stylesheet" href="/fonts/menlo.css" />
       </Head>
       <Navbar />
-      {children}
+
+      <Masthead />
+      <Box bgcolor={theme.palette.primary.dark}>
+        <Container>{children}</Container>
+      </Box>
+
       <Footer />
     </motion.article>
   );
