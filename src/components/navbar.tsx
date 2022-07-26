@@ -1,7 +1,7 @@
-import Link from "@components/link";
 import { AppBar, Stack, Toolbar, Typography } from "@mui/material";
-import { theme } from "@styles/theme";
-import transition from "@styles/utils";
+import Link from "@src/components/link";
+import { theme } from "@src/styles/theme";
+import transition from "@src/styles/utils";
 import { Spin as Hamburger } from "hamburger-react";
 // import { navDrawerAtom } from '@src/store/jotai';
 import { atom, useAtom } from "jotai";
@@ -40,14 +40,21 @@ const Navbar: FC = () => {
           }}
           ml="0.4rem"
         >
-          <Typography fontFamily="SF Pro" fontSize="1.7rem" fontStyle={"bold"}>
-            Rux.eth
-          </Typography>
+          <div className="flex flex-row space-x-3 items-center">
+            <img src="/eth-logo-white.png" width={"18px"} />
+            <Typography
+              fontFamily="SF Pro"
+              fontSize="1.7rem"
+              fontStyle={"bold"}
+            >
+              Rux.eth
+            </Typography>
+          </div>
         </Link>
 
         <Stack
           direction="row"
-          spacing={2}
+          spacing={3}
           alignItems="flex-end"
           fontFamily="SF Pro"
           sx={{
@@ -57,7 +64,7 @@ const Navbar: FC = () => {
             },
           }}
         >
-          {Links.internal}
+          {Links.external}
         </Stack>
         <Stack
           direction="row"

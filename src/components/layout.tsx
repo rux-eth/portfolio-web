@@ -1,5 +1,5 @@
 import { Box, Container } from "@mui/material";
-import { theme } from "@styles/theme";
+import { theme } from "@src/styles/theme";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import React from "react";

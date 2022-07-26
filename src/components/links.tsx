@@ -1,5 +1,5 @@
-import { theme } from "@styles/theme";
-import transition from "@styles/utils";
+import { theme } from "@src/styles/theme";
+import transition from "@src/styles/utils";
 import { FaGithub, FaMedium, FaTelegram, FaTwitter } from "react-icons/fa";
 import Link from "./link";
 
@@ -33,7 +33,7 @@ const allLinks: LinkFormat = {
       icon: <FaTelegram style={defaultStyles.icon} />,
     },
   },
-  internal: ["articles", "docs"],
+  internal: [],
 };
 
 const Links: LinkReturn = {

@@ -1,10 +1,8 @@
+import "@src/styles/global.css";
 import ResizeObserver from "@src/utils/resize-observer";
 import ScrollObserver from "@src/utils/scroll-observer";
-import { wrapper } from "@utils/store";
 import { AppProps } from "next/app";
-import React, { useEffect } from "react";
-import { ParallaxProvider } from "react-scroll-parallax";
-import "../styles/global.css";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -16,15 +14,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <ParallaxProvider>
-      <ScrollObserver>
-        <ResizeObserver>
-          {/* @ts-ignore */}
-          <Component {...pageProps} />
-        </ResizeObserver>
-      </ScrollObserver>
-    </ParallaxProvider>
+    <ScrollObserver>
+      <ResizeObserver>
+        {/* @ts-ignore */}
+        <Component {...pageProps} />
+      </ResizeObserver>
+    </ScrollObserver>
   );
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;

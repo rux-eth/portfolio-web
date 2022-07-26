@@ -1,5 +1,5 @@
 import { Breakpoint, useMediaQuery } from "@mui/material";
-import { theme } from "@styles/theme";
+import { theme } from "@src/styles/theme";
 
 export type MatchQueryType = "up" | "down" | "between";
 

@@ -2,11 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@styles/*": ["styles/*"],
-      "@pages/*": ["pages/*"],
-      "@utils/*": ["src/utils/*"]
+      "@src/*": ["src/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -31,7 +27,7 @@
     "src/utils/reducers/default.js",
     "src/utils/hoc/wrapper.js",
     "src/components/grid.js",
-    "styles/theme.js"
+    "src/styles/theme.js"
   ],
   "exclude": ["node_modules"]
 }

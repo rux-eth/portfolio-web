@@ -1,4 +1,3 @@
-import React from "react";
 import Links from "./links";
 
 const Footer = () => {
@@ -7,6 +6,9 @@ const Footer = () => {
       <div className="opacity-50"></div>
       <div className="flex flex-row space-x-3">{Links.external}</div>
       {Links.internal}
+      <p className="text-sm text-white opacity-[50%] py-2">
+        © 2022 Maxwell Rux. All Rights Reserved.
+      </p>
     </div>
   );
 };

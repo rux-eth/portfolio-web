@@ -1,6 +1,5 @@
 import Layout from "@src/components/layout";
 import TLDR from "@src/components/tldr";
-import Wrapper from "@utils/hoc/wrapper";
 import type { NextPage } from "next";
 const Home: NextPage = () => {
   return (
@@ -9,5 +8,4 @@ const Home: NextPage = () => {
     </Layout>
   );
 };
-/* hi */
-export default Wrapper(Home);
+export default Home;
