@@ -1,4 +1,6 @@
+import { ThemeProvider } from "@mui/material/styles";
 import "@src/styles/global.css";
+import { theme } from "@src/styles/theme";
 import ResizeObserver from "@src/utils/resize-observer";
 import ScrollObserver from "@src/utils/scroll-observer";
 import { DAppProvider } from "@usedapp/core";
@@ -17,8 +19,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     <DAppProvider config={{}}>
       <ScrollObserver>
         <ResizeObserver>
-          {/* @ts-ignore */}
-          <Component {...pageProps} />
+          <ThemeProvider theme={theme}>
+            {/* @ts-ignore */}
+            <Component {...pageProps} />
+          </ThemeProvider>
         </ResizeObserver>
       </ScrollObserver>
     </DAppProvider>

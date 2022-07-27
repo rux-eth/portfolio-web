@@ -1,15 +1,58 @@
-import { AppBar, Stack, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  Button as MuiButton,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import Link from "@src/components/link";
+import { navDrawerAtom } from "@src/store/jotai";
 import { theme } from "@src/styles/theme";
 import transition from "@src/styles/utils";
+import { useEthers, useLookupAddress } from "@usedapp/core";
 import { Spin as Hamburger } from "hamburger-react";
-// import { navDrawerAtom } from '@src/store/jotai';
-import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
 import { FC } from "react";
 import Links from "./links";
 
+const ConnectButton: FC = () => {
+  const { account, active, activateBrowserWallet } = useEthers();
+  const { ens } = useLookupAddress(account);
+  return (
+    <MuiButton
+      onClick={!active ? () => activateBrowserWallet() : undefined}
+      color="secondary"
+      variant="contained"
+      disabled={active}
+      sx={{
+        maxHeight: "40px",
+        opacity: active ? "60%" : "100%",
+        textTransform: "none",
+      }}
+    >
+      {active ? (
+        <Typography
+          className="border-2 border-secondary-main rounded-md px-4"
+          color="white"
+          fontFamily="Strippy"
+          fontSize={"1.2rem"}
+          sx={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            maxWidth: "12ch",
+          }}
+        >
+          {ens ?? account}
+        </Typography>
+      ) : (
+        <div className="font-bold text-lg">Connect</div>
+      )}
+    </MuiButton>
+  );
+};
 const Navbar: FC = () => {
-  const [isNavDrawerOpen, setIsNavDrawerOpen] = useAtom(atom(false));
+  const [isNavDrawerOpen, setIsNavDrawerOpen] = useAtom(navDrawerAtom);
 
   return (
     <AppBar
@@ -58,6 +101,7 @@ const Navbar: FC = () => {
           alignItems="flex-end"
           fontFamily="SF Pro"
           sx={{
+            alignItems: "center",
             display: "none",
             [theme.breakpoints.up("md")]: {
               display: "flex",
@@ -65,6 +109,7 @@ const Navbar: FC = () => {
           }}
         >
           {Links.external}
+          <ConnectButton />
         </Stack>
         <Stack
           direction="row"
@@ -72,6 +117,7 @@ const Navbar: FC = () => {
           alignItems="center"
           sx={{ [theme.breakpoints.up("md")]: { display: "none" } }}
         >
+          <ConnectButton />
           <Hamburger
             toggled={isNavDrawerOpen}
             toggle={setIsNavDrawerOpen}

@@ -30,7 +30,7 @@ const themeConstants = {
 };
 
 // Check here for more configurations https://material-ui.com/customization/default-theme/
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     primary: themeConstants.primary,
     secondary: themeConstants.secondary,
@@ -45,5 +45,3 @@ const theme = createTheme({
     values: themeConstants.breakpoints as BreakpointVals,
   },
 });
-
-export { theme };

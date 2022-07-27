@@ -1,10 +1,14 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, Slide, Snackbar } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
+import snackbarAtom from "@src/store/jotai";
 import { theme } from "@src/styles/theme";
 import { motion } from "framer-motion";
+import { useAtom } from "jotai";
 import Head from "next/head";
-import React from "react";
+import React, { forwardRef, useCallback } from "react";
 import Footer from "./footer";
 import Navbar from "./navbar";
+import NavDrawer from "./navDrawer";
 
 const variants = {
   hidden: { opacity: 0, x: 0, y: 20 },
@@ -14,7 +18,20 @@ const variants = {
 interface LayoutProps {
   title?: string;
 }
+function SlideTransition(props: any) {
+  return <Slide {...props} direction="down" />;
+}
+
+const Alert = forwardRef((props, ref) => (
+  <MuiAlert elevation={4} ref={ref as any} variant="filled" {...props} />
+));
 const Layout: React.FC<LayoutProps> = ({ children, title }) => {
+  const [snackbar, setSnackbar] = useAtom(snackbarAtom);
+  const handleClose = useCallback(
+    () => setSnackbar({ ...snackbar, isOpen: false }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [snackbar.isOpen]
+  );
   const t = title ? `${title} - Rux.eth` : `Rux.eth`;
   return (
     <motion.article
@@ -37,6 +54,27 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       </Box>
 
       <Footer />
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        open={snackbar.isOpen}
+        onClose={handleClose}
+        TransitionComponent={SlideTransition}
+        autoHideDuration={3000}
+      >
+        {/* @ts-ignore */}
+        <Alert
+          onClose={handleClose}
+          severity={snackbar.severity}
+          sx={
+            snackbar.severity === "success"
+              ? { width: "100%", backgroundColor: "#06ff76", color: "black" }
+              : {}
+          }
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
+      <NavDrawer />
     </motion.article>
   );
 };
