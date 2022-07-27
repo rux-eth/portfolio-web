@@ -1,4 +1,3 @@
-import { theme } from "@src/styles/theme";
 import transition from "@src/styles/utils";
 import { FaGithub, FaMedium, FaTelegram, FaTwitter } from "react-icons/fa";
 import Link from "./link";
@@ -43,14 +42,14 @@ const Links: LinkReturn = {
       href={val.link}
       target="_blank"
       sx={{
-        color: theme.palette.primary.main,
+        color: "#bbbbbb",
         textDecoration: "none",
         transition,
         transitionDuration: "500ms",
         ":hover": {
-          color: theme.palette.secondary.main,
+          color: "#ffffff",
           cursor: "pointer",
-          transform: "translateY(-2px)",
+          transform: "scale(115%)",
         },
       }}
     >
@@ -62,12 +61,12 @@ const Links: LinkReturn = {
       key={val}
       href={`/${val}`}
       sx={{
-        color: theme.palette.primary.main,
+        color: "#bbbbbb",
         textDecoration: "none",
         transition,
         transitionDuration: "500ms",
         ":hover": {
-          color: theme.palette.secondary.main,
+          color: "#ffffff",
           cursor: "pointer",
           transform: "translateY(-2px)",
         },

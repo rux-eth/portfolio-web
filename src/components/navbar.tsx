@@ -1,10 +1,4 @@
-import {
-  AppBar,
-  Button as MuiButton,
-  Stack,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Button, Stack, Toolbar, Typography } from "@mui/material";
 import Link from "@src/components/link";
 import { navDrawerAtom } from "@src/store/jotai";
 import { theme } from "@src/styles/theme";
@@ -19,16 +13,22 @@ const ConnectButton: FC = () => {
   const { account, active, activateBrowserWallet } = useEthers();
   const { ens } = useLookupAddress(account);
   return (
-    <MuiButton
-      className="hover:bg-black duration-500"
+    <Button
+      className="text-black"
       onClick={activateBrowserWallet}
-      variant="contained"
       disabled={active}
-      color="secondary"
+      variant="contained"
       sx={{
-        maxHeight: "40px",
+        backgroundColor: "#BBBBBB",
+        maxHeight: "32px",
         opacity: active ? "60%" : "100%",
         textTransform: "none",
+        transition,
+        transitionDuration: "500ms",
+        ":hover": {
+          backgroundColor: "#ffffff",
+          transform: "scale(105%)",
+        },
       }}
     >
       {active ? (
@@ -49,7 +49,7 @@ const ConnectButton: FC = () => {
       ) : (
         <div className="font-bold text-lg">Connect</div>
       )}
-    </MuiButton>
+    </Button>
   );
 };
 const Navbar: FC = () => {
