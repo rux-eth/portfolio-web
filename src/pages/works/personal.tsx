@@ -1,10 +1,11 @@
-import Layout from "@src/components/layout";
+import Layout from "@src/components/layouts/pages";
 import WorkPage from "@src/components/workPage";
 import { WorkInfo } from "@src/types";
 import { NextPage } from "next";
 const info: WorkInfo = {
-  title: "Portfolio Site",
-  description: "Website to display my portfolio and work experience",
+  title: "Personal Site",
+  description:
+    "Website for clients to check work progress and to display my work experience.",
   thumbnail: "/assets/thumbnails/portfolio-site.png",
   status: "Building",
   languages: new Set(["Typescript"]),
@@ -23,7 +24,7 @@ const Portfolio: NextPage = () => {
         stack={info.stack}
         website={info.website}
       >
-        <div></div>
+        <div className="h-screen"></div>
       </WorkPage>
     </Layout>
   );

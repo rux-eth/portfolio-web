@@ -12,7 +12,6 @@ interface RainItem {
 
 interface RainProps {
   refContain: RefObject<HTMLDivElement>;
-  timeDriven?: boolean;
   variant?: number;
 }
 
@@ -89,8 +88,7 @@ const getSeeds = (): RainItem[] => {
 const variants: RainItem[][] = Array.from(Array(config.numVars), () =>
   getSeeds()
 );
-const Rain: FC<RainProps> = ({ refContain, variant, timeDriven }) => {
-  let td = timeDriven === undefined ? false : timeDriven;
+const Rain: FC<RainProps> = ({ refContain, variant }) => {
   const { scrollY } = useContext(ScrollContext);
   const v: number = variant ?? chance.integer({ min: 0 });
   let progress = 0;

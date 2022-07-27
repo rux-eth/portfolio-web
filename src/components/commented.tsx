@@ -74,7 +74,7 @@ const CommentedHeader: FC<CommentedHeaderProps> = ({ textSize, content }) => {
       fontFamily={"Menlo"}
       fontStyle={"italic"}
       fontSize={textSize}
-    >{`/* ${content} */`}</Stack>
+    >{`// ${content}`}</Stack>
   );
 };
 export { refs, CommentedContent, CommentedHeader };

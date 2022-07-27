@@ -14,8 +14,8 @@ const WorkPage: FC<WorkInfo & { children: any }> = ({
   children,
 }) => {
   return (
-    <div className="flex flex-col">
-      <CommentedHeader content={title} textSize={"30px"} />
+    <div className="flex flex-col text-white">
+      <CommentedHeader content={title} textSize={"7vw"} />
       {children}
     </div>
   );

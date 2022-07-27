@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import Head from "next/head";
 import React, { forwardRef, useCallback } from "react";
-import Footer from "./footer";
-import Navbar from "./navbar";
-import NavDrawer from "./navDrawer";
+import Footer from "../footer";
+import Masthead from "../masthead";
+import Navbar from "../navbar";
+import NavDrawer from "../navDrawer";
 
 const variants = {
   hidden: { opacity: 0, x: 0, y: 20 },
@@ -48,8 +49,8 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
         <link rel="stylesheet" href="/fonts/menlo.css" />
       </Head>
       <Navbar />
-
-      <Box bgcolor={theme.palette.primary.dark} paddingTop={"70px"}>
+      <Masthead scale={1} />
+      <Box bgcolor={theme.palette.primary.dark}>
         <Container>{children}</Container>
       </Box>
 

@@ -41,7 +41,7 @@ const ConnectButton: FC = () => {
             whiteSpace: "nowrap",
             overflow: "hidden",
             textOverflow: "ellipsis",
-            maxWidth: "12ch",
+            maxWidth: "10ch",
           }}
         >
           {ens ?? account}
@@ -98,7 +98,7 @@ const Navbar: FC = () => {
 
         <Stack
           direction="row"
-          spacing={3}
+          spacing={2.4}
           alignItems="flex-end"
           fontFamily="SF Pro"
           sx={{

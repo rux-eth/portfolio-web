@@ -106,7 +106,7 @@ const TLDR: React.FC = () => {
           .map(([k, v]) => `\n${k}:${v.map((elem) => `\n - ${elem}`).join("")}`)
           .join("\n")}`;
   return (
-    <div className="flex flex-col bg-inherit py-6 text-left text-primary-main space-y-3 py-7">
+    <div className="flex flex-col bg-inherit text-left text-primary-main space-y-3">
       <CommentedHeader
         textSize={useMatchesMediaQuery("up", "lg") ? "8vw" : "8vw"}
         content="tl;dr"
