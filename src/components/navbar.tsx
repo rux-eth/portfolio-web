@@ -20,10 +20,11 @@ const ConnectButton: FC = () => {
   const { ens } = useLookupAddress(account);
   return (
     <MuiButton
-      onClick={!active ? () => activateBrowserWallet() : undefined}
-      color="secondary"
+      className="hover:bg-black duration-500"
+      onClick={activateBrowserWallet}
       variant="contained"
       disabled={active}
+      color="secondary"
       sx={{
         maxHeight: "40px",
         opacity: active ? "60%" : "100%",
@@ -32,9 +33,9 @@ const ConnectButton: FC = () => {
     >
       {active ? (
         <Typography
-          className="border-2 border-secondary-main rounded-md px-4"
+          className="outline outline-white outline-2 outline-offset-2 rounded-md px-2"
           color="white"
-          fontFamily="Strippy"
+          fontFamily="SF Pro Display"
           fontSize={"1.2rem"}
           sx={{
             whiteSpace: "nowrap",
