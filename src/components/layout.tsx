@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import React from "react";
 import Footer from "./footer";
-import Masthead from "./masthead";
 import Navbar from "./navbar";
 
 const variants = {
@@ -33,8 +32,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       </Head>
       <Navbar />
 
-      <Masthead />
-      <Box bgcolor={theme.palette.primary.dark}>
+      <Box bgcolor={theme.palette.primary.dark} paddingTop={"70px"}>
         <Container>{children}</Container>
       </Box>
 
