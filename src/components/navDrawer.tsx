@@ -27,6 +27,10 @@ const NavDrawer: FC = () => {
     >
       <Stack
         spacing={1.2}
+        direction="column"
+        textAlign={"center"}
+        fontFamily="SF Pro Display"
+        fontSize={"2rem"}
         sx={{
           backdropFilter: "blur(16px) saturate(180%)",
           WebkitBackdropFilter: "blur(16px) saturate(180%)",

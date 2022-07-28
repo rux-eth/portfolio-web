@@ -3,6 +3,8 @@ import { FC } from "react";
 import { CommentedHeader } from "./commented";
 
 const WorkPage: FC<WorkInfo & { children: any }> = ({
+  children,
+  id,
   title,
   description,
   thumbnail,
@@ -11,7 +13,6 @@ const WorkPage: FC<WorkInfo & { children: any }> = ({
   stack,
   website,
   article,
-  children,
 }) => {
   return (
     <div className="flex flex-col text-white">

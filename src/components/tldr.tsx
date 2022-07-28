@@ -1,7 +1,7 @@
+import { works } from "@src/components/works";
 import useMatchesMediaQuery from "@src/utils/hooks/useMatchesMediaQuery";
 import React from "react";
 import { CommentedContent, CommentedHeader } from "./commented";
-import { WorkGridItem } from "./gridItem";
 import Seperator from "./seperator";
 
 interface Section {
@@ -37,28 +37,7 @@ const sections: Section[] = [
       <div className="flex flex-col text-center space-y-3">
         <CommentedHeader content="Recent Works" textSize="30px" />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 p-6">
-          <WorkGridItem
-            href="https://github.com/rux-eth/portfolio-web"
-            title="Portfolio Site"
-            thumbnail="/thumbnails/portfolio-site.png"
-          >
-            Website to display my portfolio and work experience
-          </WorkGridItem>
-          <WorkGridItem
-            href="https://github.com/rux-eth/defi-taxes"
-            title="Defi Taxes(TS)"
-            thumbnail="/thumbnails/defi-taxes.png"
-          >
-            Software that calculates DeFi taxes. Currently working on updating
-            it with Rust and web assembly
-          </WorkGridItem>
-          <WorkGridItem
-            href="https://github.com/rux-eth/nft-data-miner-rust"
-            title="NFT Data Miner"
-            thumbnail="/thumbnails/nft-data-miner.png"
-          >
-            Efficiently mines NFT data for a collection using Rust and web3.rs
-          </WorkGridItem>
+          {works.getAllPreviews().slice(0, 3)}
         </div>
         {/*   <Link href="/works">
           <span className="text-3xl text-blue-500 cursor-pointer underline underline-offset-2 hover:scale-105 duration-300 py-2">

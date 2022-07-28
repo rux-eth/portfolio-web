@@ -1,7 +1,6 @@
 import { Box, Container, Slide, Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import snackbarAtom from "@src/store/jotai";
-import { theme } from "@src/styles/theme";
 import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import Head from "next/head";
@@ -50,7 +49,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       </Head>
       <Navbar />
       <Masthead scale={1} />
-      <Box bgcolor={theme.palette.primary.dark}>
+      <Box bgcolor={"#333333"}>
         <Container>{children}</Container>
       </Box>
 

@@ -100,7 +100,8 @@ const Navbar: FC = () => {
           direction="row"
           spacing={2.4}
           alignItems="flex-end"
-          fontFamily="SF Pro"
+          fontFamily="SF Pro Display"
+          fontSize={"1.6rem"}
           sx={{
             alignItems: "center",
             display: "none",
@@ -109,6 +110,7 @@ const Navbar: FC = () => {
             },
           }}
         >
+          {Links.internal}
           {Links.external}
           <ConnectButton />
         </Stack>
